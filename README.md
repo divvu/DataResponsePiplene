@@ -1,6 +1,6 @@
 # Disaster Response Pipeline Project
 
-## This is to a ML pipeline to to categorize emergency mesaages based on the needs communicated by the sender.
+## This project is built to develope a Machine Learning pipeline to categorize emergency mesaages based on the needs communicated by the sender.
 
 ### Instructions:
 1. Run the following commands in theprocess_data project's root directory to set up your database and model.
