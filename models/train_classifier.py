@@ -17,6 +17,7 @@ from sklearn.tree import DecisionTreeClassifier
 import pickle
 
 def load_data(database_filepath):
+    """Load the filepath and return the data"""
     engine = create_engine('sqlite:///'+database_filepath)
     df = pd.read_sql_table('Response', con=engine)
     print(df.head())
@@ -27,6 +28,7 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
+    """tokenize and transform input text. Return cleaned text"""
     url_regex = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
     detected_urls = re.findall(url_regex, text)
     for url in detected_urls:
@@ -46,6 +48,7 @@ def tokenize(text):
 
 
 def build_model():
+    """Return Grid Search model with pipeline and Classifier"""
     moc = MultiOutputClassifier(RandomForestClassifier())
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
@@ -61,16 +64,27 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """Print model results
+    INPUT
+    model -- required, estimator-object
+    X_test -- required
+    Y_test -- required
+    category_names = required, list of category strings
+    OUTPUT
+    None
+    """
     y_pred = model.predict(X_test)
     print(classification_report(Y_test, y_pred, target_names=category_names))
     results = pd.DataFrame(columns=['Category', 'f_score', 'precision', 'recall'])
 
 
 def save_model(model, model_filepath):
+    """Save model as pickle file"""
     pickle.dump(model, open(model_filepath, 'wb'))
 
 
 def main():
+    """Load the data, run the model and save model"""
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
