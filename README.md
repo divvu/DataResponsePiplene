@@ -34,12 +34,15 @@ This project is to classify disaster response messages through machine learning.
    > http://0.0.0.0:3001/
 
 ## Screenshots
-This is the frontpage:
+
+#### This is the frontpage:
+
 ![Alt text](https://github.com/divvu/DisasterResponsePipeline/blob/master/data_pipeline_ss1.JPG )
 
 ![Alt text](https://github.com/divvu/DisasterResponsePipeline/blob/master/data_pipeline_ss2.JPG )
 
-By inputting a word, you can check its category:
+#### By inputting a word, you can check its category:
+
 ![Alt text](https://github.com/divvu/DisasterResponsePipeline/blob/master/data_pipeline_ss3.JPG)
 
 ## About
